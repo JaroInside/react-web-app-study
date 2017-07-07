@@ -1,23 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router';
 
 class Header extends React.Component {
   render() {
+    const loginButton = (
+      <li>
+        <a>
+          <i className="material-icons">vpn_key</i>
+        </a>
+      </li>
+    );
+
+    const logoutButton = (
+      <li>
+        <a>
+          <i className="material-icons">lock_open</i>
+        </a>
+      </li>
+    );
+
     return (
       <nav>
         <div className="nav-wrapper blue darken-1">
-          <a className="brand-logo center">MEMOPAD</a>
+          <Link to="/" className="brand-logo center">MEMOPAD</Link>
           <ul>
             <li><a><i className="material-icons">search</i></a></li>
           </ul>
           <div className="right">
             <ul>
-              <li>
-                <a><i className="material-icons">vpn_key</i></a>
-              </li>
-              <li>
-                <a><i className="material-icons">lock_open</i></a>
-              </li>
+              { this.props.isLoggedIn ? logoutButton : loginButton }
             </ul>
           </div>
         </div>
@@ -27,13 +39,13 @@ class Header extends React.Component {
 }
 
 Header.propTypes = {
-    isLoggedIn: PropTypes.bool,
-    onLogout: PropTypes.func
+  isLoggedIn: PropTypes.bool,
+  onLogout: PropTypes.func
 };
 
 Header.defaultProps = {
-    isLoggedIn: false,
-    onLogout: () => { console.error("logout function not defined");}
+  isLoggedIn: false,
+  onLogout: () => { console.error("logout function not defined");}
 };
 
 export default Header;
