@@ -8,7 +8,7 @@ router.use('/account', account);
 router.use('/memo', memo);
 
 router.get('/', (req,res) => {
-    res.send("api route");
+  res.send("api route");
 });
 
 export default router;

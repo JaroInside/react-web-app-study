@@ -17,10 +17,16 @@ app.use(bodyParser.json());
 // SERVE STATIC FILES - REACT PROJECT
 app.use('/', express.static(__dirname + '/../../public'));
 
+app.use(session({
+  secret: '@#@$MYSIGN#@$#$',
+  resave: false,
+  saveUninitialized: true
+}));
+
 app.use('/api', api);
 
 app.listen(port, () => {
-    console.log('Server is listening on port', port);
+  console.log('Server is listening on port', port);
 });
 
 /* handle error */
@@ -36,10 +42,3 @@ db.once('open', () => { console.log('Connected to mongodb server'); });
 mongoose.connect(config.dbUrl, error => {
   if(error) console.error(error);
 });
-
-/* use session */
-app.use(session({
-    secret: 'J@#%a2@#%r46@4o',
-    resave: false,
-    saveUninitialized: true
-}));

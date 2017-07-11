@@ -3,8 +3,9 @@ import { Authentication } from '../components';
 import { connect } from 'react-redux';
 import { loginRequest } from '../actions/authentication';
 import { browserHistory } from 'react-router';
-import $ from 'jquery';
-import Materialize from 'materialize-css';
+
+const $ = window.$;
+const Materialize = window.Materialize;
 
 class Login extends React.Component {
 
@@ -24,13 +25,13 @@ class Login extends React.Component {
           };
 
           document.cookie = 'key=' + btoa(JSON.stringify(loginData));
-          //Materialize.toast('Welcome, ' + id + '!', 2000);
+          Materialize.toast('Welcome, ' + id + '!', 2000);
           console.log('correct');
           browserHistory.push('/');
           return true;
         } else {
-          //let $toastContent = $('<span style="color: #FFB4BA">Incorrect username or password</span>');
-          //Materialize.toast($toastContent, 2000);
+          let $toastContent = $('<span style="color: #FFB4BA">Incorrect username or password</span>');
+          Materialize.toast($toastContent, 2000);
           console.log('incorrect');
           return false;
         }
